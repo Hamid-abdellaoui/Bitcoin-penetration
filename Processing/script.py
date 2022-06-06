@@ -4,14 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 np.set_printoptions(precision=2, linewidth=80)
-from nltk import FreqDist
 # Gensim
 import gensim
 from gensim import corpora
 from gensim.models.coherencemodel import CoherenceModel
 
 import spacy
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import re
 #from bs4 import BeautifulSoup
