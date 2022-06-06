@@ -34,20 +34,20 @@ import dateparser
 import datetime
 
 
-data_set1=pd.read_csv("Article19.csv")
-data_set2=pd.read_csv("aujourdhui.csv")
-data_set3=pd.read_csv("bladi.csv")
-data_set4=pd.read_csv("challenge.csv")
+data_set1=pd.read_csv("../Data collection/Historic data/raw data/Article19.csv")
+data_set2=pd.read_csv("../Data collection/Historic data/raw data/aujourdhui.csv")
+data_set3=pd.read_csv("../Data collection/Historic data/raw data/bladi.csv")
+data_set4=pd.read_csv("../Data collection/Historic data/raw data/challenge.csv")
 data_set4.drop("link",axis=1,inplace=True)
-data_set5=pd.read_csv("H24info.csv")
+data_set5=pd.read_csv("../Data collection/Historic data/raw data/H24info.csv")
 data_set5.drop("link",axis=1,inplace=True)
-data_set6=pd.read_csv("lesiteinfo.csv")
-data_set7=pd.read_csv("mapnews.csv")
-data_set8=pd.read_csv("marochebdo.csv")
-data_set9=pd.read_csv("media24.csv")
-data_set10=pd.read_csv("telquel.csv")
-data_set11=pd.read_csv("le360.csv")
-data_set12=pd.read_csv("laquotidien.csv")
+data_set6=pd.read_csv("../Data collection/Historic data/raw data/lesiteinfo.csv")
+data_set7=pd.read_csv("../Data collection/Historic data/raw data/mapnews.csv")
+data_set8=pd.read_csv("../Data collection/Historic data/raw data/marochebdo.csv")
+data_set9=pd.read_csv("../Data collection/Historic data/raw data/media24.csv")
+data_set10=pd.read_csv("../Data collection/Historic data/raw data/telquel.csv")
+data_set11=pd.read_csv("../Data collection/Historic data/raw data/le360.csv")
+data_set12=pd.read_csv("../Data collection/Historic data/raw data/laquotidien.csv")
 datasets = [data_set1,data_set2,data_set3,data_set4,data_set5,data_set6,
     data_set7,data_set8,data_set9,data_set10,data_set11,data_set12]
 
