@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--icons link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+
+    <!--end bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" style="color: rgb(16, 190, 190); font-size: 20px;font-weight: bolder;" href="/">BITCOIN'S PENETRATION</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <ul class="navbar-nav ">
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <li class="nav-item {% if request.endpoint=='home' %}active{%endif %}">
+                    <a class="nav-link" href="/">Home </a>
+                </li>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <li class="nav-item {% if request.endpoint=='UnderstandML' %}active{%endif %}">
+                    <a class="nav-link" href="UnderstandML">
+                        <p>Today's Topics</p>
+                    </a>
+                </li>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <li class="nav-item {% if request.endpoint=='About' %}active{%endif %}">
+                    <a class="nav-link" href="About">
+                        <p>About</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <!--navbar end-->
+
+    <div class="container text-center">
+        {% block content %} {% endblock %}
+    </div>
+
+
+
+    <br>
+
+    <!-- Footer -->
+    <div class="footer-padding"></div>
+    <footer class="footer bg-dark footer-dark text-center">
+        <!-- Copyright -->
+        <div style="margin: 10px;
+        color: rgb(16, 190, 190) !important;">
+            © {{ now.year }} Copyrights || All rights reserved
+            <a class="text-light" href="https://github.com/saad167">Saad</a> &
+            <a class="text-light" href="https://hamidabdellaoui.netlify.app/">Hamid</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;</button>
+  
+    <!--footer end-->
+
+    
+    <!-- bootstrap-->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+        });
+    </script>
+
+    
+<!--*** Dark mode widget start***-->
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+    const options = {
+        bottom:'50%',
+        right:'30px',
+        left: 'unset', // default: 'unset'
+        time: '0.3s', // default: '0.3s'
+        mixColor: '#fff', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        label: '🌓', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
+</script>
+<!--*** Dark mode widget end***-->
+
+<script src="../static/js/index.js"></script>
+
+</body>
+
+</html>
