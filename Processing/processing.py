@@ -38,7 +38,7 @@ corpuses = [ "sep_ara_tor".join(corpus) for corpus in corpuses ]
 
 ############# exporting as csv file #################################
 
-pd.DataFrame(corpuses,columns=["corpuses"]).to_csv("./corpuses.csv",index=False)
+pd.DataFrame(corpuses,columns=["corpuses"]).to_csv("./Outpout/corpuses.csv",index=False)
 
 
 
