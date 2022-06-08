@@ -9,6 +9,8 @@ clean = pd.read_csv("./Outpout/Datasets.csv", parse_dates=['date'])
 clean['period']=clean['date'].dt.to_period('M')
 clean.sort_values(by="date" ,inplace=True)
 
+l_periods = list(set(clean['period']))
+
 ################ Diviser le corpus suivant les periods ##########
 corpuses = []
 l_periods=list(set(clean.period.values))
@@ -29,11 +31,16 @@ corpuses.append(derniere_corpus)
 
 
 ################ lower corpus #######################################
-corpuses = [ lower_text(corpus) for corpus in corpuses[:2]]
+corpuses = [ lower_text(corpus) for corpus in corpuses ]
 
-for corpus in corpuses :
-    with open('test.txt', 'w') as f:
-        f.write(json.dumps(corpus))
+############# joining corpuses #####################################
+corpuses = [ "sep_ara_tor".join(corpus) for corpus in corpuses ]
+
+############# exporting as csv file #################################
+
+pd.DataFrame(corpuses,columns=["corpuses"]).to_csv("./corpuses.csv",index=False)
+
+
 
 
 

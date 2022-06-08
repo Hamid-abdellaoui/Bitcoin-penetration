@@ -1,4 +1,5 @@
 from text_mining import *
+from processing import *
 import seaborn as sns
 import matplotlib.pyplot as plt 
 import json
@@ -30,7 +31,7 @@ def process_corpus(corpus,indice):
     common_corpus = [id2word.doc2bow(text) for text in corpus_lemmatized] 
     ####### choix du meilleur model ###################################
     cm = CoherenceModel(topics=topic_terms,corpus=common_corpus, dictionary=id2word, 
-                coherence='u_mass')
+               coherence='u_mass')
     coherence = cm.get_coherence()
     best_model,coherence_values=compute_coherence_values(tfidf_train_features,
     feature_names,corpus,corpus_lemmatized,id2word,max_term=20,limit=50)
@@ -77,15 +78,22 @@ def process_corpus(corpus,indice):
     return output
 
 
-#Now read the file back into a Python list object
-with open('test.txt', 'r') as f:
-    corpuses = json.loads(f.read())
+################ Now read the csv file as a Python list object ########
 
-test = process_corpus(list(corpuses[1]),1) 
+corpuses = pd.read_csv("./corpuses.csv")
 
-test[1].drop(["doc_num"],axis=1).mean(axis=0).plot(kind='bar', title ="Importance des sujets",
-                                                        figsize=(15,10), fontsize=15)
-plt.xlabel("Sujet", fontsize=20)
-plt.ylabel("Frequence d'apparution", fontsize=20)
-plt.xticks(rotation=70)
-plt.show()
+corpuses = corpuses.values
+
+corpuses = [ corpus[0].split("sep_ara_tor") for corpus in corpuses ]
+
+
+
+results = [ process_corpus(corpuses[i],i) for i in range (len(corpuses))] 
+
+def plot_topic(res):
+    res[1].drop(["doc_num"],axis=1).mean(axis=0).plot(kind='bar', title ="Importance des sujets",
+                                                            figsize=(15,10), fontsize=15)
+    plt.xlabel("Sujet", fontsize=20)
+    plt.ylabel("Frequence d'apparution", fontsize=20)
+    plt.xticks(rotation=70)
+    plt.show()
