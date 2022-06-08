@@ -1,51 +1,65 @@
 {% extends "base.html" %} {% block title %}NOCODE ML {% endblock %} {% block
 content %}
 
-<br>
-<h2 class="text-center">Welcome</h2>
-<br>
-
+<h4 class="text-center">Bonjour</h4>
+<h5>Le nombres d'articles parlant de bitcoins est corrélé avec sa valeur</h5>
 <br>
 
-<!--
-    <nav>
-    <div class="nav nav-tabs flex-column flex-sm-row nav-justified" id="nav-tab" role="tablist">
-        <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-            aria-controls="nav-home" aria-selected="true">
-            Regression
-        </a>
-        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-            aria-controls="nav-profile" aria-selected="false">
-            Classification
-        </a>
-        <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-            aria-controls="nav-contact" aria-selected="false">
-            Time series & DL
-        </a>
-    </div>
-</nav>
 
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        reg here
-    </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        classification here
-    </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        soon
-    </div>
-</div>-->
 <div class="row text-center">
 
-    
-    <div class="col-6">Hello world <br> <br> <br></div>
-    <div class="col-6">Hello world <br> <br> <br></div>
-    <div class="col-6">Hello world <br> <br> <br></div>
-    <div class="col-6">Hello world <br> <br> <br></div>
+    <div class="col-md-6">
+        <div class="title">
+            <h4> Valeur de bitcoin enter 2012 et 2022</h4>
+        </div>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div id="tradingview_b2cc7"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSD/?exchange=BITSTAMP" rel="noopener" target="_blank"><span class="blue-text">BTCUSD Rates</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+    new TradingView.MediumWidget(
+    {
+    "symbols": [
+      [
+        "Bitcoin",
+        "BITSTAMP:BTCUSD|ALL"
+      ]
+    ],
+    "chartOnly": true,
+    "width": "500",
+    "height": "400",
+    "locale": "en",
+    "colorTheme": "dark",
+    "isTransparent": false,
+    "autosize": false,
+    "showVolume": false,
+    "hideDateRanges": false,
+    "scalePosition": "right",
+    "scaleMode": "Normal",
+    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+    "noTimeScale": false,
+    "valuesTracking": "1",
+    "chartType": "line",
+    "fontColor": "rgba(0, 255, 255, 1)",
+    "gridLineColor": "rgba(216, 216, 216, 0.83)",
+    "container_id": "tradingview_b2cc7"
+  }
+    );
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+    </div>
+    <div class="col-md-6">
+        <div class="title">
+            <h4> Nombres d'articles parlant bitcoin enter 2012 et 2022</h4>
+        </div>
+        <img src="{{url_for('static', filename='images/n_btc_articles.png')}}" alt="n_btc" class="img-fluid" width="500">
+    </div>
+
     
 
 </div>
 
-
+<br><br><br><br><br><br><br><br>
 {% endblock %}
