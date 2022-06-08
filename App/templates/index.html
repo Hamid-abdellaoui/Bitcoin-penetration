@@ -8,58 +8,123 @@ content %}
 
 <div class="row text-center">
 
-    <div class="col-md-6">
-        <div class="title">
-            <h4> Valeur de bitcoin enter 2012 et 2022</h4>
-        </div>
-        <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-    <div id="tradingview_b2cc7"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSD/?exchange=BITSTAMP" rel="noopener" target="_blank"><span class="blue-text">BTCUSD Rates</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-    new TradingView.MediumWidget(
-    {
-    "symbols": [
-      [
-        "Bitcoin",
-        "BITSTAMP:BTCUSD|ALL"
-      ]
-    ],
-    "chartOnly": true,
-    "width": "500",
-    "height": "400",
-    "locale": "en",
-    "colorTheme": "dark",
-    "isTransparent": false,
-    "autosize": false,
-    "showVolume": false,
-    "hideDateRanges": false,
-    "scalePosition": "right",
-    "scaleMode": "Normal",
-    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-    "noTimeScale": false,
-    "valuesTracking": "1",
-    "chartType": "line",
-    "fontColor": "rgba(0, 255, 255, 1)",
-    "gridLineColor": "rgba(216, 216, 216, 0.83)",
-    "container_id": "tradingview_b2cc7"
-  }
-    );
-    </script>
+  <div class="col-md-6">
+    <div class="title">
+      <h4> Valeur de bitcoin enter 2012 et 2022</h4>
+    </div>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_b2cc7"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSD/?exchange=BITSTAMP"
+          rel="noopener" target="_blank"><span class="blue-text">BTCUSD Rates</span></a> by TradingView</div>
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+        new TradingView.MediumWidget(
+          {
+            "symbols": [
+              [
+                "Bitcoin",
+                "BITSTAMP:BTCUSD|ALL"
+              ]
+            ],
+            "chartOnly": true,
+            "width": "500",
+            "height": "400",
+            "locale": "en",
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "autosize": false,
+            "showVolume": false,
+            "hideDateRanges": false,
+            "scalePosition": "right",
+            "scaleMode": "Normal",
+            "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+            "noTimeScale": false,
+            "valuesTracking": "1",
+            "chartType": "line",
+            "fontColor": "rgba(0, 255, 255, 1)",
+            "gridLineColor": "rgba(216, 216, 216, 0.83)",
+            "container_id": "tradingview_b2cc7"
+          }
+        );
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
   </div>
-  <!-- TradingView Widget END -->
-    </div>
-    <div class="col-md-6">
-        <div class="title">
-            <h4> Nombres d'articles parlant bitcoin enter 2012 et 2022</h4>
-        </div>
-        <img src="{{url_for('static', filename='images/n_btc_articles.png')}}" alt="n_btc" class="img-fluid" width="500">
-    </div>
 
-    
+  <div class="col-md-6">
+    <div class="title">
+      <h4> Nombres d'articles parlant bitcoin enter 2012 et 2022</h4>
+    </div>
+    <img src="{{url_for('static', filename='images/n_btc_articles.png')}}" alt="n_btc" class="img-fluid" width="500">
+  </div>
 
 </div>
+
+ <hr>
+<div class="row text-center">
+
+
+
+  <div class="col-md-6">
+    <div class="title">
+      <h4> Topics most covered in one month</h4>
+    </div>
+
+    <select class="classic" name="score" onchange="updateSelected(event)">
+      <option value="{{months[0]}}" class="text-center" selected="selected">Choose a period</option>
+      {% for score in months %}
+      <option value={{score}}> {{score}} </option>
+      {% endfor %}
+    </select>
+    <br> <br>
+    <div id="image1">
+      <script>
+        function updateSelected(event) {
+          var el = document.getElementById("image1");
+          var2 = event.target.value;
+          a = "<img src=\"static/images/topics/";
+          b = ".png\" alt=\"n_btc\" class=\"img-fluid\" width=\"500\">";
+          el.innerHTML = a + var2 + b;
+        }
+      </script>
+      <img src="{{url_for('static', filename='images/topics/2022-05.png')}}" alt="n_btc" class="img-fluid" width="500">
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="title">
+      <h4> Evolution of topics most covered in one month</h4>
+    </div>
+    <select class="classic" name="score" onchange="updateSelected1(event)">
+      <option class="text-center" value="{{months[0]}}" selected="selected">Choose a period</option>
+      {% for score in months %}
+      <option value={{score}}> {{score}} </option>
+      {% endfor %}
+    </select>
+    <br> <br>
+    <div id="image2">
+      <script>
+        function updateSelected1(event) {
+          var el = document.getElementById("image2");
+          var1 = event.target.value;
+          c = "<img src=\"static/images/trends/";
+          d = ".png\" alt=\"n_btc\" class=\"img-fluid\" width=\"500\" height=\"500\">";
+          el.innerHTML = c + var1 + d;
+        }
+      </script>
+      <img src="{{url_for('static', filename='images/trends/2022-05.png')}}" alt="n_btc" class="img-fluid" width="500">
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
 
 <br><br><br><br><br><br><br><br>
 {% endblock %}

@@ -24,25 +24,6 @@ import numpy as np
 
 k=0
 
-def create_plot():
-
-
-    N = 40
-    x = np.linspace(0, 1, N)
-    y = np.random.randn(N)
-    df = pd.DataFrame({'x': x, 'y': y}) # creating a sample dataframe
-
-
-    data = [
-        go.Bar(
-            x=df['x'], # assign x as the dataframe column 'x'
-            y=df['y']
-        )
-    ]
-
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphJSON
 
 ## to get current year
 @app.context_processor
@@ -51,13 +32,18 @@ def inject_now():
 
 @app.route("/")
 def home():
-    bar = create_plot()
-    return render_template("index.html", graphJSON=bar)
+    min_month = "2012-11"
+    max_month = "2022-5"
+    months = pd.period_range(min_month, max_month, freq='M')
+    value = months.to_timestamp(how='end').strftime('%Y-%m')
+
+
+    return render_template("index.html", months=value)
         
 
-@app.route("/UnderstandML")
-def UnderstandML():
-    return render_template("UnderstandML.html")
+@app.route("/topics")
+def topics():
+    return render_template("topics.html")
 
 @app.route("/About")
 def About():
