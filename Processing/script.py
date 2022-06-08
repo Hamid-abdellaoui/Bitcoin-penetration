@@ -1,4 +1,5 @@
 from text_mining import *
+from processing import *
 import seaborn as sns
 import matplotlib.pyplot as plt 
 import json
@@ -30,7 +31,7 @@ def process_corpus(corpus,indice):
     common_corpus = [id2word.doc2bow(text) for text in corpus_lemmatized] 
     ####### choix du meilleur model ###################################
     cm = CoherenceModel(topics=topic_terms,corpus=common_corpus, dictionary=id2word, 
-                coherence='u_mass')
+               coherence='u_mass')
     coherence = cm.get_coherence()
     best_model,coherence_values=compute_coherence_values(tfidf_train_features,
     feature_names,corpus,corpus_lemmatized,id2word,max_term=20,limit=50)
@@ -38,18 +39,6 @@ def process_corpus(corpus,indice):
     total_topics=best_model.n_components 
     weights = best_model.components_ 
     topics = get_topics_terms_weights(weights,feature_names)
-    ################### sujet dominant pour chaque document #############
-    sent_topics_df=topic_dominant(best_model,tfidf_train_features,corpus,topics)
-    
-    
-    #sent_topics_sorted = pd.DataFrame()
-    #sent_topics_outdf_grpd =sent_topics_df.groupby('Topic Dominant')
-    #for i, grp in sent_topics_outdf_grpd:
-    #    sent_topics_sorted= pd.concat([sent_topics_sorted,
-    #    grp.sort_values(['Contrib Topic'], ascending=[0]).head(1)], axis=0) 
-    #sent_topics_sorted.reset_index(drop=True, inplace=True)
-    #sent_topics_sorted=sent_topics_sorted.drop(["Num Document"],axis=1)
-
     ##### Data_For_Plot ########################################################
     period = l_periods[indice]
     clean_modified = clean.loc[clean.period == period , :]
@@ -65,27 +54,56 @@ def process_corpus(corpus,indice):
     trends = stories.merge(story_topics_for_plot, on='doc_num')
     mass = lambda x: ((x) * 1.0).sum() / x.shape[0]  
     window = 10
-    if len(labels)> 18 :
-        aggs = {labels[17]: mass,labels[4]:mass,labels[17]:mass,labels[16]:mass,labels[11]:mass}
-    else :
-        aggs = {labels[0]: mass,labels[1]:mass,labels[2]:mass,labels[3]:mass,labels[4]:mass}
+    trend_indice = min(len(labels),5)
+    aggs = {labels[i]: mass for i in range(trend_indice) }
     data_for_plot=trends.groupby(trends['Date'].dt.date).agg(aggs).rolling(window).mean()
 
     ######### output de chaque corpus ###############################
-    output=[sent_topics_df,story_topics_for_plot,data_for_plot]
+    output=[story_topics_for_plot,data_for_plot]
 
     return output
 
 
-#Now read the file back into a Python list object
-with open('test.txt', 'r') as f:
-    corpuses = json.loads(f.read())
+################ Now read the csv file as a Python list object ########
 
-test = process_corpus(list(corpuses[1]),1) 
+corpuses = pd.read_csv("./Outpout/corpuses.csv")
 
-test[1].drop(["doc_num"],axis=1).mean(axis=0).plot(kind='bar', title ="Importance des sujets",
-                                                        figsize=(15,10), fontsize=15)
-plt.xlabel("Sujet", fontsize=20)
-plt.ylabel("Frequence d'apparution", fontsize=20)
-plt.xticks(rotation=70)
-plt.show()
+corpuses = corpuses.values
+
+corpuses = [ corpus[0].split("sep_ara_tor") for corpus in corpuses ]
+
+
+
+results = [ process_corpus(corpuses[i],i) for i in range (len(corpuses))] 
+
+def plot_topic(res,k):
+    plt.xlabel("Sujet", fontsize=20)
+    plt.ylabel("Frequence d'apparution", fontsize=20)
+    plt.xticks(rotation=45,fontsize=15)
+    # plot the data
+    plt.style.use('ggplot') 
+    # change font zise of the x and y labels
+    font = {'family' : 'normal',
+            'weight' : 'bold',
+            'size'   : 15}
+    plt.rc('font', **font)
+    res[0].drop(["doc_num"],axis=1).mean(axis=0).plot(kind='bar',figsize=(15,10))
+    plt.savefig('../App/static/images/topics/'+str(k)+'.png', box_inches='tight')
+
+def plot_trend(res,k):
+
+    plt.figure(figsize=(15,8))
+    # plot the data
+    plt.style.use('ggplot') 
+    # change font zise of the x and y labels
+    font = {'family' : 'normal',
+            'weight' : 'bold',
+            'size'   : 15}
+    plt.rc('font', **font)
+    sns.lineplot(data=res[1], palette="tab10", linewidth=2.5)
+    plt.savefig('../App/static/images/trends/'+str(k)+'.png', box_inches='tight')
+
+for i in range(len(corpuses)):
+    plot_topic(results[i], i)
+    plot_trend(results[i], i)
+
