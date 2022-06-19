@@ -21,5 +21,5 @@ This project try to track Moroccan Media/news and the most common topics by time
 
 #### Contrubutors :
 <a href="https://github.com/Hamid-abdellaoui/Bitcoin-penetration/graphs/contributors">
-  <img src="https://opencollective.com/Bitcoin-penetration/contributors.svg?width=890&button=false">
+  <img src="https://contrib.rocks/image?repo=Hamid-abdellaoui/Bitcoin-penetration" />
 </a>
